@@ -34,7 +34,7 @@ For any given cell *w*, each non-*w* cell in its [Moore Neighborhood](https://en
 
 At a given time *t*, the state of a cell at *t+1* (in the next generation) can be computed as follows:
 
-![Modal CA Rules](http://imgur.com/HkwD3pu.png)
+![Modal CA Rules](http://imgur.com/3o56Q1a.png)
 
 ### English
 
