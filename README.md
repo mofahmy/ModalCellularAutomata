@@ -1,13 +1,17 @@
 # Modal Cellular Automaton
 
 A Cellular Automaton similar to Conway's Game of Life, with rules based on [modal operators](https://en.wikipedia.org/wiki/Modal_operator).
+
 Modified from original source at [https://processing.org/examples/gameoflife.html](https://processing.org/examples/gameoflife.html)
+
+(Example Animations)[https://github.com/mofahmy/ModalCellularAutomaton#example-animations] illustrating some interesting runs can be further down in this README.
+
 
 ## Controls
 
 The `.pde` can be opened, modified, and run with the [Processing IDE](https://processing.org/).
 
-Experimenting with a custom, simple initial generation is recommended to observe more interesting behaviors than seen in a randomly-generated grid. See [Example Animations](#Example Animations) for some starters and inspiration. 
+Experimenting with a custom, simple initial generation is recommended to observe more interesting behaviors than seen in a randomly-generated grid. See [Example Animations](#example-animations) for some starters and inspiration. 
 
 | Key | Function | Explanation|
 | --- | --- | --- |
