@@ -254,7 +254,7 @@ void keyPressed() {
       }
     }
     generation = 1; // Reset generation counter
-    pause = !pause;
+    pause = true;
   }
   
   if (key == 'n' || key == 'N') { // Iterate one step (next gneration)
