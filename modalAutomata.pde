@@ -50,7 +50,7 @@ void setup() {
   cellColors[4] = color(5,165,140); // Emerald
   cellColors[5] = color(100,110,95); // Forest Green
   cellColors[6] = color(200,205,130); // Light Green
-  cellColors[7] = color(190,20,10); // Pinkish
+  cellColors[7] = color(238,130,28); // Violet
   cellColors[8] = color(235,100,60); // Orange
   cellColors[9] = color(190,25,55); // Red - in anticipation of adding reflexive relation (9 neighbors including self)
   
@@ -170,7 +170,7 @@ void iteration() { // When the clock ticks
           if ( ((xx >= 0) && (xx < width/cellSize)) && ((yy >= 0) && (yy < height/cellSize)) ) { // Out of bounds check
             if (!((xx == x) && (yy == y))) { // Ignore self
               neighborhood++; // Count number of cells in neighborhood
-              if (cellsBuffer[xx][yy] == 1) {
+              if (cellsBuffer[xx][yy] > 0) {
                 neighbors++; // Check alive neighbors and count them
                 //print ("Cell " + x + "," + y + " has neighbor at " + xx + "," + yy + "\n"); //Debug
               }
@@ -192,7 +192,7 @@ void iteration() { // When the clock ticks
         cells[x][y] = 0;
       } else if ( (cellsBuffer[x][y] == 0) && (neighbors == 0) ) {   // Rule 3
         cells[x][y] = 0;
-      } else if ( (cellsBuffer[x][y] == 1) && (neighbors == 0) ) {   // Rule 4
+      } else if ( (cellsBuffer[x][y] > 0) && (neighbors == 0) ) {   // Rule 4
         cells[x][y] = neighbors;
       } else { // DEBUG - Should never happen. Flash red and print info if it does.
         // print ("Error at " + x + "," + y + "\n");
@@ -254,6 +254,7 @@ void keyPressed() {
       }
     }
     generation = 1; // Reset generation counter
+    pause = !pause;
   }
   
   if (key == 'n' || key == 'N') { // Iterate one step (next gneration)
