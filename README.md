@@ -13,13 +13,16 @@ The `.pde` can be opened, modified, and run with the [Processing IDE](https://pr
 
 Experimenting with a custom, simple initial generation is recommended to observe more interesting behaviors than seen in a randomly-generated grid. See [Example Animations](#example-animations) for some starters and inspiration. 
 
+Keys are case-insensitive.
+
 | Key | Function | Explanation|
 | --- | --- | --- |
 | `Spacebar` | Pause | Pauses or unpauses execution.|
-| `c` | Clear | Clears the grid.|
-| `r` | Random | Instantiates a random configuration on the grid.|
-| `g` | Generation | Shows or hides the generation counter.|
-| `n` | Next | Iterates one generation forward. Useful for examining behavior when paused.|
+| `C` | Clear | Clears the grid.|
+| `R` | Random | Instantiates a random configuration on the grid.|
+| `G` | Generation | Shows or hides the generation counter.|
+| `N` | Next | Iterates one generation forward. Useful for examining behavior when paused.|
+| `L` | Color | Toggles 'color' mode, which colorizes cells by living neighbor count. |
 | `Mouse Click`| Toggle Cell | Toggles the state of an individual cell (alive / dead). Only usable when paused.|
 
 ## Rules
