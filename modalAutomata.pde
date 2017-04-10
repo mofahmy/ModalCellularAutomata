@@ -14,11 +14,17 @@ int lastRecordedTime = 0;
 int generation = 1;
 
 // Colors for active/inactive cells and generation counter
+
+// Default colors for mode with only 1 live color
 color alive = color(0, 200, 0);
 color dead = color(0);
 
-color counterBG = color(0);
-color counter = color(255);
+// For multi-color mode
+color[] cellColors = new color[10];
+
+// Text "background" and text colors
+color textBG = color(0);
+color textColor = color(255);
 
 // Array of cells
 int[][] cells; 
@@ -28,12 +34,25 @@ int[][] cellsBuffer;
 // Pause
 boolean pause = false;
 
+boolean colors = false;
+
 // Show generation counter
 boolean generationCounter = true;
 
 void setup() {
   // Window size
   size(475,475);
+  
+  cellColors[0] = color(0); // BLACK - dead cell
+  cellColors[1] = color(80,90,100); // Gray
+  cellColors[2] = color(65,35,95); // Purple
+  cellColors[3] = color(0,100,151); // Blue
+  cellColors[4] = color(5,165,140); // Emerald
+  cellColors[5] = color(100,110,95); // Forest Green
+  cellColors[6] = color(200,205,130); // Light Green
+  cellColors[7] = color(190,20,10); // Pinkish
+  cellColors[8] = color(235,100,60); // Orange
+  cellColors[9] = color(190,25,55); // Red - in anticipation of adding reflexive relation (9 neighbors including self)
   
   // Instantiate arrays 
   cells = new int[width/cellSize][height/cellSize];
@@ -67,8 +86,12 @@ void draw() {
   // Draw grid
   for (int x = 0; x < width / cellSize; x++) {
     for (int y = 0; y < height / cellSize; y++) {
-      if (cells[x][y] == 1) { // If alive
-        fill(alive); 
+      if (cells[x][y] > 0) { // If alive (1). See comment about cell colors in iteration method.
+        if (colors) {
+          fill(cellColors[cells[x][y]]);
+        } else {
+          fill(alive);
+        }
       } else {                // If dead
         fill(dead); 
       }
@@ -118,11 +141,12 @@ void draw() {
     
     // Draw counter twice, slightly shifted, with different colors for emphasis.
     // This is a bit of a hack to make the text more discernible among the rest of the canvas.
-    fill(counterBG);
+    fill(textBG);
     text(gen, width/2-1, height-25-1); // 
-    fill(counter);
+    fill(textColor);
     text(gen, width/2, height-25);
   }
+  
 }
 
 
@@ -156,15 +180,20 @@ void iteration() { // When the clock ticks
       }
 
       //MODAL GAME OF LIFE RULES
-
+      
+      /*
+      * Technically, only 0 and 1 are true states, but here we assign living cells
+      *  the number of live neighbors they have as their value. This is so we can 
+      *  access it outside the loop for when color mode is enabled.
+      */
       if ( (neighbors > 0) && (neighbors != neighborhood) ) {        // Rule 1
-        cells[x][y] = 1;
+        cells[x][y] = neighbors;
       } else if ( (neighbors > 0) && (neighbors == neighborhood) ) { // Rule 2
         cells[x][y] = 0;
       } else if ( (cellsBuffer[x][y] == 0) && (neighbors == 0) ) {   // Rule 3
         cells[x][y] = 0;
       } else if ( (cellsBuffer[x][y] == 1) && (neighbors == 0) ) {   // Rule 4
-        cells[x][y] = 1; // 4a = 1, 4b = 0
+        cells[x][y] = neighbors;
       } else { // DEBUG - Should never happen. Flash red and print info if it does.
         // print ("Error at " + x + "," + y + "\n");
         // print ("Self = " + cellsBuffer[x][y] + "\n");
@@ -234,6 +263,10 @@ void keyPressed() {
   
   if (key == 'g' || key == 'G') {
    generationCounter = !generationCounter; 
+  }
+  
+  if (key == 'l' || key == 'L') {
+   colors = !colors; 
   }
   
 }
