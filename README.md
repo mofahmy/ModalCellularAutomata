@@ -4,6 +4,8 @@ A Cellular Automaton similar to Conway's Game of Life, with rules based on [moda
 
 Modified from original source at [https://processing.org/examples/gameoflife.html](https://processing.org/examples/gameoflife.html)
 
+![colorMode](http://imgur.com/yXwDpTJ.png)
+
 [Example Animations](#example-animations) illustrating some interesting runs can be further down in this README.
 
 
